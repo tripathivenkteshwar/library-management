@@ -30,8 +30,7 @@ public class SecurityConfig {
         http.csrf(csrf-> csrf.disable())
                 .csrf(csrf -> csrf.ignoringRequestMatchers( "/**"))
                 .authorizeRequests()
-                .requestMatchers("/**").permitAll()
-                .requestMatchers("/api/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic(httpBasic -> httpBasic.authenticationEntryPoint(((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage()))));
